@@ -1,0 +1,27 @@
+<h1>My tasks</h1>
+
+<% @tasks.each do |task| %>
+  <div>
+    <% if task.completed == false %>
+      <span>[ ]</span>
+    <% else %>
+      <span>[X]</span>
+    <% end %>
+    <span> <%= link_to "#{task.title}", "tasks/show/#{task.id}" %></span>
+    <span class="deleteTask"> <%= link_to "Delete", task_path(task), method: :delete %></span>
+  </div>
+<% end %>
+
+<br>
+
+<%= link_to "Add a new task", "tasks/new" %>
+
+<script type="text/javascript">
+  const deleteTask = document.querySelectorAll(".deleteTask");
+
+  deleteTask.forEach((task) => {
+    task.addEventListener("click", (event) => {
+      window.alert("Are you sure?")
+    })
+  })
+</script>
